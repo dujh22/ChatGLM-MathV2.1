@@ -11,3 +11,22 @@ chatglm.py
 Step3_JudgmentStepCalculatedCorrectly.log
 
 __pycache__/
+
+*.bin
+*.model
+*.pt
+
+# 忽略所有 .pyc 文件
+*.pyc
+# 忽略 docx 文件
+*.docx
+# 忽略所有 .log 文件
+*.log
+# 忽略所有 .tmp 文件
+*.tmp
+# 忽略所有 .bak 文件
+*.bak
+# 忽略所有 .old 文件
+*.old
+# 忽略所有 .tmp 文件
+*.tmp

@@ -1,6 +1,6 @@
 @echo off
 
-SET project_path=F://code//github//ChatGLM-MathV2.1//
+SET project_path=F://code//github//math-feedback//math-feedback//
 SET num_parallel_process=10
 cd %project_path%
 
