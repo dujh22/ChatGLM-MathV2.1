@@ -2,6 +2,24 @@ import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+# 如果打开下面一行，命令行会自动输出代码执行的时间
+import time
+# 这个装饰器 time_it 可以被应用到任何你希望测量执行时间的函数上。它通过计算函数开始和结束时的时间来计算执行时间，并将时间转换为小时、分钟和秒的格式。
+def time_it(func):
+    """
+    装饰器，用于测量函数执行时间。
+    """
+    def wrapper(*args, **kwargs):
+        start_time = time.time()  # 获取开始时间
+        result = func(*args, **kwargs)  # 执行函数
+        end_time = time.time()  # 获取结束时间
+        time_taken = end_time - start_time  # 计算耗时
+        hours, rem = divmod(time_taken, 3600)
+        minutes, seconds = divmod(rem, 60)
+        print(f"{func.__name__} executed in: {int(hours):02d}h:{int(minutes):02d}m:{seconds:06.3f}s")
+        return result
+    return wrapper
+
 # import hunter # 用于调试
 # hunter.trace(module=__name__)
 
@@ -120,6 +138,7 @@ def query_chatglm_tgi(prompt, history=[], do_sample=True, max_tokens=2048, max_r
     return result  # 返回生成的结果或None
 
 # 这里设置使用的llm进行生成，注意在本项目中只有这里一个地方进行相关设置
+@time_it
 def llm_response(prompt, backbone, url):
     # print(prompt[:10])
     response = ""

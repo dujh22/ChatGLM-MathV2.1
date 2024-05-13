@@ -10,6 +10,14 @@
 
 具体包括三个部分：分别是模型后向评分反馈、模型过程预测标注 和 模型前向自动标注。
 
+其中：
+
+模型后向评分反馈的核心是直接将llm对question的response与reference-answer进行比较评分，是一个粗粒度相对宽松评分；
+
+模型过程预测标注是针对llm对question的response，分步扩展并利用扩展路径进行预测评分，是一个细粒度相对宽松评分；
+
+模型前向自动标注是针对llm对question的response，分步逐步利用tool（计算tool和推理tool）进行实际评分，是一个细粒度相对严格评分。
+
 详细pipeline见下图：
 
 ![whiteboard_exported_image](png/4.png)
